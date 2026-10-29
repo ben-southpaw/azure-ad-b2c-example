@@ -2,6 +2,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
+  const manageSecurity = (session as any)?.manageSecurity;
 
   if (status === "loading") {
     return (
@@ -19,6 +20,21 @@ export default function HomePage() {
           <>
             <div>Signed in as: {session.user.name}</div>
             <div>Email: {session.user.email}</div>
+            {manageSecurity && (
+              <div>
+                Manage security: {manageSecurity.actionState} (correlation ID{" "}
+                {manageSecurity.correlationId})
+              </div>
+            )}
+            <button
+              onClick={() =>
+                signIn("azure-ad-b2c-manage-security", undefined, {
+                  login_hint: session.user?.email ?? "",
+                })
+              }
+            >
+              Manage security
+            </button>
             <button onClick={() => signOut()}>Sign out</button>
           </>
         ) : (
