@@ -21,10 +21,14 @@ export default function HomePage() {
             <div>Signed in as: {session.user.name}</div>
             <div>Email: {session.user.email}</div>
             {manageSecurity && (
-              <div>
-                Manage security: {manageSecurity.actionState} (correlation ID{" "}
-                {manageSecurity.correlationId})
-              </div>
+              <dl className="result">
+                <dt>Manage security result</dt>
+                <dd>{manageSecurity.actionState}</dd>
+                <dt>Correlation ID</dt>
+                <dd>
+                  <code>{manageSecurity.correlationId}</code>
+                </dd>
+              </dl>
             )}
             <button
               onClick={() =>
