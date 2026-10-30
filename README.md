@@ -61,9 +61,9 @@ Use the custom policies in this repo as a starting point for your own implementa
 
 ## Manage security policy
 
-The `B2C_1A_MANAGE_SECURITY` policy in [./policies/ManageSecurity.xml](./policies/ManageSecurity.xml) runs an Authsignal flow for a user who is already signed in. The flow can verify the user, then show a page where the user adds or removes authenticators. The demo app shows a **Manage security** button after sign-in.
+The `B2C_1A_MANAGE_SECURITY` policy in [./policies/ManageSecurity.xml](./policies/ManageSecurity.xml) runs an Authsignal flow for a user who is already signed in. The flow verifies the user, then shows a page where the user manages authenticators. The demo app shows a **Manage security** button after sign-in.
 
-1. In the Authsignal Portal, create a flow for managing authenticators.
+1. In the Authsignal Portal, create a flow with a verification step and a step that manages authenticators. In the verification step, allow every method your users can enroll, for example passkey, email OTP and SMS.
 2. Set `ManageSecurityActionCode` in `appsettings.json` to the action code of that flow.
 3. Build and upload the policies.
 4. In the Azure AD B2C app registration, add the redirect URI `<NEXTAUTH_URL>/api/auth/callback/azure-ad-b2c-manage-security`.
