@@ -18,6 +18,7 @@ const b2cProvider = (id: string, policy: string): OAuthConfig<any> => ({
   idToken: true,
   clientId: process.env.AZURE_AD_B2C_CLIENT_ID!,
   clientSecret: process.env.AZURE_AD_B2C_CLIENT_SECRET!,
+  client: { token_endpoint_auth_method: "client_secret_post" },
   authorization: { params: { scope: "offline_access openid" } },
   profile: (profile) => {
     return {
